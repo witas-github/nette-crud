@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+    php-httpd:
+        build:
+            context: ./docker/php
+        ports:
+            - 80:80
+        volumes:
+            - "./source:/var/www/html"
+
+    mysql:
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PWD}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_USER_PASSWD}
+            MYSQL_DATABASE: ${MYSQL_DB}
