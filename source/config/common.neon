@@ -23,6 +23,9 @@ nettrine.dbal:
         password: verystrongpassword
         dbname: rtsoft
 
+nettrine.migrations:
+  directory: %appDir%/migrations
+
 nettrine.orm.annotations:
   mapping: [
     namespace: %appDir%/Entities
@@ -36,6 +39,7 @@ extensions:
     nettrine.orm.annotations: Nettrine\ORM\DI\OrmAnnotationsExtension
     nettrine.orm.console: Nettrine\ORM\DI\OrmConsoleExtension
     nettrine.cache: Nettrine\Cache\DI\CacheExtension
+    nettrine.migrations: Nettrine\Migrations\DI\MigrationsExtension
     console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
 
 services:

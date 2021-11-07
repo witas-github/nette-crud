@@ -58,6 +58,12 @@
       <excludeFolder url="file://$MODULE_DIR$/source/vendor/symfony/polyfill-intl-grapheme" />
       <excludeFolder url="file://$MODULE_DIR$/source/vendor/symfony/polyfill-php72" />
       <excludeFolder url="file://$MODULE_DIR$/source/vendor/contributte/console" />
+      <excludeFolder url="file://$MODULE_DIR$/source/vendor/laminas/laminas-code" />
+      <excludeFolder url="file://$MODULE_DIR$/source/vendor/nettrine/migrations" />
+      <excludeFolder url="file://$MODULE_DIR$/source/vendor/friendsofphp/proxy-manager-lts" />
+      <excludeFolder url="file://$MODULE_DIR$/source/vendor/symfony/filesystem" />
+      <excludeFolder url="file://$MODULE_DIR$/source/vendor/symfony/stopwatch" />
+      <excludeFolder url="file://$MODULE_DIR$/source/vendor/doctrine/migrations" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
