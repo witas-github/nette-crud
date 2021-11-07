@@ -24,9 +24,40 @@
       <path value="$PROJECT_DIR$/source/vendor/nette/finder" />
       <path value="$PROJECT_DIR$/source/vendor/nette/application" />
       <path value="$PROJECT_DIR$/source/vendor/nette/tester" />
+      <path value="$PROJECT_DIR$/source/vendor/nettrine/cache" />
+      <path value="$PROJECT_DIR$/source/vendor/nettrine/dbal" />
+      <path value="$PROJECT_DIR$/source/vendor/contributte/di" />
+      <path value="$PROJECT_DIR$/source/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/source/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/source/vendor/nettrine/annotations" />
+      <path value="$PROJECT_DIR$/source/vendor/nettrine/orm" />
+      <path value="$PROJECT_DIR$/source/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/source/vendor/doctrine/common" />
+      <path value="$PROJECT_DIR$/source/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/source/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/source/vendor/doctrine/orm" />
+      <path value="$PROJECT_DIR$/source/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/source/vendor/doctrine/persistence" />
+      <path value="$PROJECT_DIR$/source/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/source/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/source/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/source/vendor/doctrine/collections" />
+      <path value="$PROJECT_DIR$/source/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/source/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/source/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/source/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/source/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/source/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/source/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/source/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/source/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/source/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/source/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/source/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/source/vendor/contributte/console" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="7.2">
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.4">
     <option name="suggestChangeDefaultLanguageLevel" value="false" />
   </component>
 </project>

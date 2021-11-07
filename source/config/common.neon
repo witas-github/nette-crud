@@ -1,21 +1,42 @@
 parameters:
 
-
 application:
 	errorPresenter: Error
 	mapping:
 		*: App\*Module\Presenters\*Presenter
 
-
 session:
 	expiration: 14 days
-
 
 di:
 	export:
 		parameters: no
 		tags: no
 
+nettrine.dbal:
+    debug:
+        panel: %debugMode%
+    connection:
+        driver: mysqli
+        host: rtsoft_mariadb_1
+        user: rtsoft
+        password: verystrongpassword
+        dbname: rtsoft
+
+nettrine.orm.annotations:
+  mapping: [
+    namespace: %appDir%/Entities
+  ]
+
+extensions:
+    nettrine.annotations: Nettrine\Annotations\DI\AnnotationsExtension
+    nettrine.dbal: Nettrine\DBAL\DI\DbalExtension
+    nettrine.dbal.console: Nettrine\DBAL\DI\DbalConsoleExtension
+    nettrine.orm: Nettrine\ORM\DI\OrmExtension
+    nettrine.orm.annotations: Nettrine\ORM\DI\OrmAnnotationsExtension
+    nettrine.orm.console: Nettrine\ORM\DI\OrmConsoleExtension
+    nettrine.cache: Nettrine\Cache\DI\CacheExtension
+    console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
 
 services:
 	- App\Router\RouterFactory::createRouter
