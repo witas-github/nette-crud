@@ -63,6 +63,8 @@
       <excludeFolder url="file://$MODULE_DIR$/source/vendor/symfony/filesystem" />
       <excludeFolder url="file://$MODULE_DIR$/source/vendor/symfony/stopwatch" />
       <excludeFolder url="file://$MODULE_DIR$/source/vendor/doctrine/migrations" />
+      <excludeFolder url="file://$MODULE_DIR$/source/vendor/phpstan/phpstan-nette" />
+      <excludeFolder url="file://$MODULE_DIR$/source/vendor/phpstan/phpstan" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
