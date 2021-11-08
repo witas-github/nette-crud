@@ -17,19 +17,18 @@ nettrine.dbal:
     debug:
         panel: %debugMode%
     connection:
-        driver: mysqli
-        host: rtsoft_mariadb_1
+        driver: pdo_mysql
+        host: database
         user: rtsoft
         password: verystrongpassword
         dbname: rtsoft
 
 nettrine.migrations:
-  directory: %appDir%/migrations
+  directory: %appDir%/Migrations
 
 nettrine.orm.annotations:
-  mapping: [
-    namespace: %appDir%/Entities
-  ]
+  mapping:
+      App\Entity\: %appDir%/Entity
 
 extensions:
     nettrine.annotations: Nettrine\Annotations\DI\AnnotationsExtension

@@ -12,7 +12,6 @@
       <excludeFolder url="file://$MODULE_DIR$/source/vendor/tracy/tracy" />
       <excludeFolder url="file://$MODULE_DIR$/source/vendor/latte/latte" />
       <excludeFolder url="file://$MODULE_DIR$/source/vendor/nette/di" />
-      <excludeFolder url="file://$MODULE_DIR$/source/vendor/nette/database" />
       <excludeFolder url="file://$MODULE_DIR$/source/vendor/nette/bootstrap" />
       <excludeFolder url="file://$MODULE_DIR$/source/vendor/nette/forms" />
       <excludeFolder url="file://$MODULE_DIR$/source/vendor/nette/php-generator" />
@@ -64,6 +63,7 @@
       <excludeFolder url="file://$MODULE_DIR$/source/vendor/symfony/filesystem" />
       <excludeFolder url="file://$MODULE_DIR$/source/vendor/symfony/stopwatch" />
       <excludeFolder url="file://$MODULE_DIR$/source/vendor/doctrine/migrations" />
+      <excludeFolder url="file://$MODULE_DIR$/source/vendor/nette/database" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

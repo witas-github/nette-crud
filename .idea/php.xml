@@ -9,7 +9,6 @@
       <path value="$PROJECT_DIR$/source/vendor/tracy/tracy" />
       <path value="$PROJECT_DIR$/source/vendor/latte/latte" />
       <path value="$PROJECT_DIR$/source/vendor/nette/di" />
-      <path value="$PROJECT_DIR$/source/vendor/nette/database" />
       <path value="$PROJECT_DIR$/source/vendor/nette/bootstrap" />
       <path value="$PROJECT_DIR$/source/vendor/nette/forms" />
       <path value="$PROJECT_DIR$/source/vendor/nette/php-generator" />
@@ -61,6 +60,7 @@
       <path value="$PROJECT_DIR$/source/vendor/symfony/filesystem" />
       <path value="$PROJECT_DIR$/source/vendor/symfony/stopwatch" />
       <path value="$PROJECT_DIR$/source/vendor/doctrine/migrations" />
+      <path value="$PROJECT_DIR$/source/vendor/nette/database" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.4">

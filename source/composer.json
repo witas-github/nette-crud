@@ -9,7 +9,6 @@
 		"nette/application": "^3.1",
 		"nette/bootstrap": "^3.1",
 		"nette/caching": "^3.1",
-		"nette/database": "^3.1",
 		"nette/di": "^3.0",
 		"nette/finder": "^2.5",
 		"nette/forms": "^3.1",
@@ -25,7 +24,8 @@
 		"nettrine/cache": "^0.3.0",
 		"nettrine/annotations": "^0.7.0",
 		"contributte/console": "^0.9.1",
-		"nettrine/migrations": "^0.7.1"
+		"nettrine/migrations": "^0.7.1",
+		"nette/database": "^3.1"
 	},
 	"require-dev": {
 		"nette/tester": "^2.3",
