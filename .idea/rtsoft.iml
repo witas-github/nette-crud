@@ -63,7 +63,6 @@
       <excludeFolder url="file://$MODULE_DIR$/source/vendor/symfony/filesystem" />
       <excludeFolder url="file://$MODULE_DIR$/source/vendor/symfony/stopwatch" />
       <excludeFolder url="file://$MODULE_DIR$/source/vendor/doctrine/migrations" />
-      <excludeFolder url="file://$MODULE_DIR$/source/vendor/nette/database" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

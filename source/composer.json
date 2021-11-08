@@ -24,8 +24,7 @@
 		"nettrine/cache": "^0.3.0",
 		"nettrine/annotations": "^0.7.0",
 		"contributte/console": "^0.9.1",
-		"nettrine/migrations": "^0.7.1",
-		"nette/database": "^3.1"
+		"nettrine/migrations": "^0.7.1"
 	},
 	"require-dev": {
 		"nette/tester": "^2.3",
