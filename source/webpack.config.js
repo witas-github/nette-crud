@@ -1,13 +1,31 @@
 const path = require('path');
 
 module.exports = {
-    entry: './resources/js/app.js',
+    module: {
+        rules: [
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    // Creates `style` nodes from JS strings
+                    "style-loader",
+                    // Translates CSS into CommonJS
+                    "css-loader",
+                    // Compiles Sass to CSS
+                    "sass-loader",
+                ],
+            },
+        ],
+    },
+    entry: {
+        app: './resources/js/app.js',
+        css: './resources/js/css.js'
+    },
     mode: (process.env.NODE_ENV === 'production') ? 'production' : 'development',
     resolve: {
         extensions: ['*', '.js', '.jsx']
     },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].js',
         path: path.join(__dirname, 'www', 'assets'),
     },
 };
