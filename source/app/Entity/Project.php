@@ -14,6 +14,11 @@ class Project
     public const PROJECT_TYPE_TIME_LIMITED = 1;
     public const PROJECT_TYPE_CONTINUOUS_INTEGRATION = 2;
 
+    private array $projectTypeNames = [
+        self::PROJECT_TYPE_TIME_LIMITED => "Time limited",
+        self::PROJECT_TYPE_CONTINUOUS_INTEGRATION => "Continuous integration"
+    ];
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -90,6 +95,13 @@ class Project
         return $this->projectType;
     }
 
+    public function getProjectTypeName(): ?string {
+        if (isset($this->projectTypeNames[$this->getProjectType()])){
+            return $this->projectTypeNames[$this->getProjectType()];
+        }
+        return null;
+    }
+
     /**
      * @param int $projectType
      * @return Project
@@ -117,4 +129,5 @@ class Project
         $this->webProject = $webProject;
         return $this;
     }
+
 }

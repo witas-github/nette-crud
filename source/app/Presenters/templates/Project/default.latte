@@ -1,8 +1,34 @@
 
 {block content}
+{var App\Setting $setting = new App\Setting()}
 
 <div class="container mt-4 mb-4">
-	<a class="btn btn-primary" href="#" role="button">Přidat projekt</a>
+	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProject">
+		+ Add project
+	</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editProject" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="projectModalLabel">Modal title</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+
+			<div class="modal-main-content">
+				<div class="modal-body">
+					...
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
 </div>
 
 <div class="container">
@@ -10,30 +36,23 @@
 		<thead class="table-dark">
 		<tr>
 			<th scope="col">#</th>
-			<th scope="col">First</th>
-			<th scope="col">Last</th>
-			<th scope="col">Handle</th>
+			<th scope="col">Name</th>
+			<th scope="col">Deadline date</th>
+			<th scope="col">Project type</th>
+			<th scope="col">Is web project</th>
 		</tr>
 		</thead>
 		<tbody>
+		{varType App\Entity\Project[] $projects}
+		{foreach $projects as $project}
 		<tr>
-			<th scope="row">1</th>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>@mdo</td>
+			<th scope="row">{$project->getId()}</th>
+			<td>{$project->getName()}</td>
+			<td>{$project->getDeadline()->format($setting::DATE_FORMAT)}</td>
+			<td>{$project->getProjectTypeName()}</td>
+			<td>{if ($project->isWebProject())}Yes{/if}</td>
 		</tr>
-		<tr>
-			<th scope="row">2</th>
-			<td>Jacob</td>
-			<td>Thornton</td>
-			<td>@fat</td>
-		</tr>
-		<tr>
-			<th scope="row">3</th>
-			<td>Larry</td>
-			<td>the Bird</td>
-			<td>@twitter</td>
-		</tr>
+		{/foreach}
 		</tbody>
 	</table>
 </div>

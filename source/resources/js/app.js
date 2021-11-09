@@ -8,3 +8,6 @@ document.addEventListener('DOMContentLoaded', naja.initialize.bind(naja));
 netteForms.initOnLoad();
 
 custom.test();
+custom.hideAlert();
+custom.hideAllAlerts();
+custom.modalInit();

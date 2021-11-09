@@ -26,11 +26,13 @@ final class ProjectPresenter extends Nette\Application\UI\Presenter
         $this->projectRepository = $this->em->getRepository(Project::class);
     }
 
+    public function actionDefault(){
+        $this->template->projectView = true;
+    }
+
     public function renderDefault(): void
     {
-
-        bdump($this->projectRepository->findAll());
-
+        $this->template->projects = $this->projectRepository->findAll();
     }
 
 

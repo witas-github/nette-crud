@@ -1,11 +1,14 @@
 
 {block content}
+{var App\Setting $setting = new App\Setting()}
 
 <div class="container">
 	<div class="text-center mt-5">
 		<h1>Wellcome to project manager</h1>
 		<p class="lead">Easy and free app for your project management</p>
 		<p>click "manage project" to start using app</p>
-		<p>generate 100 random project <a href="#">here</a></p>
+		<p>generate {$setting::NUMBER_OF_GENERATED_PROJECT} random projects
+			<a n:href="generateProjects!">here!</a>
+		</p>
 	</div>
 </div>
