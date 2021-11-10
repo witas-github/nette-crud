@@ -1,0 +1,42 @@
+
+<div class="modal fade" id="editProject" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="projectModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-main-content">
+                {form projectForm}
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            {label "name" class => "form-label"/}
+							{input "name" class => "form-control", aria-describedby => "nameHelp"}
+                            <div id="nameHelp" class="form-text">Please insert name of your project</div>
+                        </div>
+                        <div class="mb-3">
+                            {label "deadline" class => "form-label"/}
+							{input "deadline" class => "form-control date-picker", aria-describedby => "nameDeadline"}
+                            <div id="nameDeadline" class="form-text">Please choose the final date of your project</div>
+                        </div>
+                        <div class="mb-3">
+                            {label "projectType" class => "form-label"/}
+							{input "projectType" class => "form-select", aria-describedby => "nameProjectType"}
+                            <div id="nameProjectType" class="form-text">Please choose the type of your project</div>
+                        </div>
+                        <div class="mb-3">
+                            {input "webProject" class => "form-check-input"}
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        {input "id"}
+                        {input "send" class => "btn btn-primary"}
+                    </div>
+                {/form}
+            </div>
+
+        </div>
+    </div>
+</div>

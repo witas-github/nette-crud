@@ -44,3 +44,4 @@ extensions:
 services:
 	- App\Router\RouterFactory::createRouter
 	- App\Service\ProjectService
+	- App\Forms\ProjectFormFactory

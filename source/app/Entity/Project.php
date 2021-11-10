@@ -3,18 +3,19 @@
 namespace App\Entity;
 
 use App\Repository\ProjectRepository;
+use App\Setting;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ProjectRepository::class)
  */
-class Project
+class Project extends BaseEntity
 {
     public const PROJECT_TYPE_TIME_LIMITED = 1;
     public const PROJECT_TYPE_CONTINUOUS_INTEGRATION = 2;
 
-    private array $projectTypeNames = [
+    public static array $projectTypeNames = [
         self::PROJECT_TYPE_TIME_LIMITED => "Time limited",
         self::PROJECT_TYPE_CONTINUOUS_INTEGRATION => "Continuous integration"
     ];
@@ -96,8 +97,8 @@ class Project
     }
 
     public function getProjectTypeName(): ?string {
-        if (isset($this->projectTypeNames[$this->getProjectType()])){
-            return $this->projectTypeNames[$this->getProjectType()];
+        if (isset(self::$projectTypeNames[$this->getProjectType()])){
+            return self::$projectTypeNames[$this->getProjectType()];
         }
         return null;
     }
@@ -128,6 +129,16 @@ class Project
     {
         $this->webProject = $webProject;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+          'name' => $this->getName(),
+          'deadline' => $this->getDeadline()->format(Setting::DATE_FORMAT),
+          'projectType' => $this->getProjectType(),
+          'webProject' => $this->isWebProject()
+        ];
     }
 
 }

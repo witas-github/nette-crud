@@ -6,12 +6,22 @@ module.exports = {
             {
                 test: /\.s[ac]ss$/i,
                 use: [
-                    // Creates `style` nodes from JS strings
                     "style-loader",
-                    // Translates CSS into CommonJS
                     "css-loader",
-                    // Compiles Sass to CSS
                     "sass-loader",
+                ],
+            },
+            {
+                test: /\.js$/,
+                enforce: "pre",
+                use: [
+                    "source-map-loader"
+                ],
+            },
+            {
+                test: /\.mjs$/,
+                use: [
+                    "source-map-loader"
                 ],
             },
         ],
@@ -27,5 +37,8 @@ module.exports = {
     output: {
         filename: '[name].js',
         path: path.join(__dirname, 'www', 'assets'),
+    },
+    optimization: {
+        chunkIds: 'named',
     },
 };

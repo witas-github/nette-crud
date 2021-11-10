@@ -1,5 +1,7 @@
+import datepicker from "js-datepicker";
+
 export const test = function(){
-    console.log('Test custom');
+    console.log('Test custom script...');
 }
 
 function fadeOutEffect(element){
@@ -36,15 +38,30 @@ export const hideAllAlerts = function(){
     }, 3000);
 }
 
-export const modalInit = function() {
+export const initModal = function() {
     var myModal = document.getElementById('myModal')
     var myInput = document.getElementById('myInput')
 
-    myModal.addEventListener('shown.bs.modal', function () {
-        myInput.focus()
-    })
+    if (myModal) {
+        myModal.addEventListener('shown.bs.modal', function () {
+            myInput.focus()
+        })
+    }
 }
 
-export const createModalWrapper = function() {
+export const initDatepicker = function() {
+Array.from(document.getElementsByClassName('date-picker')).forEach(
+    function(element){
+        datepicker(element,{
+            startDay: 1,
+            formatter: (input, date, instance) => {
+                input.value = date.toLocaleDateString();
+            }
+        });
+    }
+)
+
+
+
 
 }
