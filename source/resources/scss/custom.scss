@@ -2,3 +2,27 @@
 .alert {
   cursor: pointer;
 }
+
+.qs-controls {
+  background-color: #0d6efd;
+  padding:5px;
+  color:white;
+}
+
+.qs-arrow{
+  &.qs-left::after{
+    border-right-color: white;
+  }
+  &.qs-right::after{
+    border-left-color: white;
+  }
+}
+
+.qs-square:not(.qs-empty):not(.qs-disabled):not(.qs-day):not(.qs-active):hover {
+  background: lightblue;
+}
+
+.qs-active {
+  background-color: #0d6efd;
+  color:white;
+}

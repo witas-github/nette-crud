@@ -25,6 +25,7 @@ class ProjectFormFactory
     public function create(?int $id): UI\Form
     {
         $form = new UI\Form;
+        $form->getElementPrototype()->class('ajax');
         $project = $this->projectRepository->getProjectById($id);
 
         $form->addHidden('id', $id);

@@ -9,7 +9,7 @@ use App\Setting;
 use Exception;
 use Nette;
 
-final class HomepagePresenter extends Nette\Application\UI\Presenter
+final class HomepagePresenter extends BasePresenter
 {
     /** @var ProjectService @inject */
     public ProjectService $projectService;

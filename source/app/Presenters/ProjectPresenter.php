@@ -11,7 +11,7 @@ use Nette;
 use Nettrine\ORM\EntityManagerDecorator;
 
 
-final class ProjectPresenter extends Nette\Application\UI\Presenter
+final class ProjectPresenter extends BasePresenter
 {
     private EntityManagerDecorator $em;
     private ObjectRepository $projectRepository;
@@ -50,7 +50,22 @@ final class ProjectPresenter extends Nette\Application\UI\Presenter
      */
     public function createComponentProjectForm(): Nette\Application\UI\Form
     {
-        return $this->projectFormFactory->create($this->formId);
+        $projectForm = $this->projectFormFactory->create($this->formId);
+        $projectForm->onSuccess[] = function(){
+            $this->flashMessage("Form has been saved", "success");
+        };
+        $projectForm->onError[] = function(){
+            $this->flashMessage("Something went wrong", "danger");
+        };
+
+        $projectForm->onSuccess[] = function(){
+            if ($this->isAjax()) {
+                $this->redrawControl('modal');
+                $this->redrawControl('projects');
+            }
+        };
+
+        return $projectForm;
     }
 
 

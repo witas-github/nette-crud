@@ -1,37 +1,40 @@
-
 {block content}
-{var App\Setting $setting = new App\Setting()}
 
 <div class="container mt-4 mb-4">
-	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProject">
-		+ Add project
-	</button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProject">
+        + Add project
+    </button>
 </div>
 
-{include 'includes/projectEditModal.latte'}
+
+    {snippet modal}
+        {include 'includes/projectEditModal.latte'}
+    {/snippet}
+
 
 <div class="container">
-	<table class="table">
-		<thead class="table-dark">
-		<tr style="position:sticky;top:0;">
-			<th scope="col">#</th>
-			<th scope="col">Name</th>
-			<th scope="col">Deadline date</th>
-			<th scope="col">Project type</th>
-			<th scope="col">Is web project</th>
-		</tr>
-		</thead>
-		<tbody>
+    <table class="table">
+        <thead class="table-dark">
+        <tr style="position:sticky;top:0;">
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Deadline date</th>
+            <th scope="col">Project type</th>
+            <th scope="col">Is web project</th>
+        </tr>
+        </thead>
+        <tbody n:snippet="projects">
+        {var App\Setting $setting = new App\Setting()}
 		{varType App\Entity\Project[] $projects}
 		{foreach $projects as $project}
-			<tr>
-				<th scope="row">{$project->getId()}</th>
-				<td>{$project->getName()}</td>
-				<td>{$project->getDeadline()->format($setting::DATE_FORMAT)}</td>
-				<td>{$project->getProjectTypeName()}</td>
-				<td>{if ($project->isWebProject())}Yes{/if}</td>
-			</tr>
-		{/foreach}
-		</tbody>
-	</table>
+            <tr>
+                <th scope="row">{$project->getId()}</th>
+                <td>{$project->getName()}</td>
+                <td>{$project->getDeadline()->format($setting::DATE_FORMAT)}</td>
+                <td>{$project->getProjectTypeName()}</td>
+                <td>{if ($project->isWebProject())}Yes{/if}</td>
+            </tr>
+        {/foreach}
+        </tbody>
+    </table>
 </div>
