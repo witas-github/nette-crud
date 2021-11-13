@@ -15,7 +15,7 @@ use Nettrine\ORM\EntityManagerDecorator;
 final class ProjectPresenter extends BasePresenter
 {
     private EntityManagerDecorator $em;
-    /** @var ProjectRepository $projectRepository*/
+    /** @var ProjectRepository $projectRepository */
     private ObjectRepository $projectRepository;
     private ProjectFormFactory $projectFormFactory;
 
@@ -28,7 +28,7 @@ final class ProjectPresenter extends BasePresenter
      */
     public function __construct(
         EntityManagerDecorator $em,
-        ProjectFormFactory $projectFormFactory
+        ProjectFormFactory     $projectFormFactory
     )
     {
         parent::__construct();
@@ -53,7 +53,7 @@ final class ProjectPresenter extends BasePresenter
     public function handleEditModal(): void
     {
         $this->template->showEditModal = true;
-        $this->redrawSnippets(['modal'],['id' => null, 'page' => $this->page]);
+        $this->redrawSnippets(['modal'], ['id' => null, 'page' => $this->page]);
     }
 
     /**
@@ -61,11 +61,13 @@ final class ProjectPresenter extends BasePresenter
      * @throws Nette\Application\AbortException
      * @throws Nette\Application\UI\InvalidLinkException
      */
-    public function handleDeleteProject(int $id): void{
+    public function handleDeleteProject(int $id): void
+    {
         $project = $this->projectRepository->getProjectById($id);
         $project->setDeleted(true);
         $this->em->flush();
-        $this->redrawSnippets(['projects'],['id' => null, 'page' => $this->page]);
+        $this->flashMessage('Project has been deleted', 'success');
+        $this->redrawSnippets(['projects', 'flashes'], ['id' => null, 'page' => $this->page]);
     }
 
     /**
@@ -112,7 +114,7 @@ final class ProjectPresenter extends BasePresenter
         };
 
         $projectForm->onSuccess[] = function () {
-            $this->redrawSnippets(['flashes','modal','projects']);
+            $this->redrawSnippets(['flashes', 'modal', 'projects']);
         };
 
         return $projectForm;

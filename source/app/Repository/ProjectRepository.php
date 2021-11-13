@@ -7,7 +7,12 @@ use Doctrine\ORM\EntityRepository;
 
 class ProjectRepository extends EntityRepository
 {
-    public function getProjectById(?int $id): ?Project {
+    /**
+     * @param int|null $id
+     * @return Project|null
+     */
+    public function getProjectById(?int $id): ?Project
+    {
         if ($id !== null) {
             return $this->find($id);
         }

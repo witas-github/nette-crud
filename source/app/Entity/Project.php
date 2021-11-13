@@ -155,7 +155,9 @@ class Project extends BaseEntity
     }
 
 
-
+    /**
+     * @return array
+     */
     public function toArray(): array
     {
         return [

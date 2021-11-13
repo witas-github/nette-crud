@@ -51,7 +51,10 @@ class ProjectFormFactory
         return $form;
     }
 
-    public function processForm(array $values)
+    /**
+     * @param array $values
+     */
+    public function processForm(array $values): void
     {
         if (empty($values['id'])) {
             $project = new Project();

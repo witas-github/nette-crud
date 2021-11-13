@@ -19,7 +19,8 @@ final class HomepagePresenter extends BasePresenter
         parent::__construct();
     }
 
-    public function actionDefault(){
+    public function actionDefault(): void
+    {
         $this->template->homepageView = true;
     }
 
@@ -27,7 +28,7 @@ final class HomepagePresenter extends BasePresenter
      * @throws Nette\Application\AbortException
      * @throws Exception
      */
-    public function handleGenerateProjects()
+    public function handleGenerateProjects(): void
     {
         $this->projectService->generateRandomProject(Setting::NUMBER_OF_GENERATED_PROJECT);
         $this->flashMessage(Setting::NUMBER_OF_GENERATED_PROJECT . ' projects was created!', 'success');
