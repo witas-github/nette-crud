@@ -16,8 +16,6 @@ services:
         environment:
             MYSQL_ALLOW_EMPTY_PASSWORD: "no"
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-            MYSQL_USER: ${MYSQL_USER}
-            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
             MYSQL_DATABASE: ${MYSQL_DATABASE}
             DB_HOST: ${DB_HOST}
         ports:

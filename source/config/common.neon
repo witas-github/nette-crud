@@ -19,8 +19,8 @@ nettrine.dbal:
     connection:
         driver: pdo_mysql
         host: database
-        user: rtsoft
-        password: verystrongpassword
+        user: root
+        password: toor
         dbname: rtsoft
 
 nettrine.migrations:
