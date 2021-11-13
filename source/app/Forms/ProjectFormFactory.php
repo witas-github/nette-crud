@@ -19,6 +19,7 @@ class ProjectFormFactory
     public function __construct(EntityManagerDecorator $em)
     {
         $this->em = $em;
+        /* @phpstan-ignore-next-line */
         $this->projectRepository = $this->em->getRepository(Project::class);
     }
 
@@ -40,6 +41,7 @@ class ProjectFormFactory
             ->setDefaultValue(false);
 
         $form->addSubmit('send', 'Send');
+        /* @phpstan-ignore-next-line */
         $form->onSuccess[] = [$this, 'processForm'];
 
         if ($project !== null) {

@@ -37,7 +37,6 @@ final class ProjectPresenter extends BasePresenter
 
     public function actionDefault(?int $id = null)
     {
-        bdump($id);
         $this->formId = $id;
         $this->template->projectView = true;
     }
@@ -58,9 +57,30 @@ final class ProjectPresenter extends BasePresenter
         }
     }
 
-    public function renderDefault(): void
+    public function renderDefault(?int $page = null): void
     {
-        $this->template->projects = $this->projectRepository->findBy([], ['id' => 'desc']);
+        if ($page === null) {
+            $page = 1;
+        }
+
+        $projectsCount = $this->projectRepository->count([]);
+
+        $paginator = new Nette\Utils\Paginator;
+        $paginator->setItemCount($projectsCount);
+        $paginator->setItemsPerPage(50);
+        $paginator->setPage($page);
+
+        $this->template->projects = $this->projectRepository->findBy(
+            [],
+            ['id' => 'desc'],
+            $paginator->getItemsPerPage(),
+            $paginator->getOffset()
+        );
+        $this->template->paginator = $paginator;
+
+        if ($this->isAjax()) {
+            $this->redrawControl();
+        }
     }
 
     /**
