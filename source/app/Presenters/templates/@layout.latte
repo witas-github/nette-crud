@@ -30,7 +30,7 @@
 
 {snippet flashes}
     <div id="flash-messages" class="container-fluid position-absolute mt-3">
-        <span n:foreach="$flashes as $flash" style="float:right;" class="alert text-center fade-in alert-{$flash->type}" role="alert">{$flash->message}</span>
+        <span n:foreach="$flashes as $flash" style="float:right;clear:both;" class="alert text-center fade-in alert-{$flash->type}" role="alert">{$flash->message}</span>
     </div>
 {/snippet}
 

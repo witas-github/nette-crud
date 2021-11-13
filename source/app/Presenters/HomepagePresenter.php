@@ -8,20 +8,34 @@ use App\Service\ProjectService;
 use App\Setting;
 use Exception;
 use Nette;
+use Nettrine\ORM\EntityManagerDecorator;
 
 final class HomepagePresenter extends BasePresenter
 {
     /** @var ProjectService @inject */
     public ProjectService $projectService;
 
-    public function __construct()
+    private EntityManagerDecorator $em;
+
+    public function __construct(EntityManagerDecorator $em)
     {
         parent::__construct();
+
+        $this->em = $em;
     }
 
     public function actionDefault(): void
     {
         $this->template->homepageView = true;
+    }
+
+    public function renderDefault(): void {
+        try {
+            $this->em->getConnection()->connect();
+        } catch (\Exception $e) {
+            $this->flashMessage("Database connection failure! Try refresh this page!", "danger");
+            $this->flashMessage("This maybe cause Docker mysql is not ready yet!", "danger");
+        }
     }
 
     /**

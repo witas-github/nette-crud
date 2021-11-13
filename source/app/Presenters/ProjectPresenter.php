@@ -7,6 +7,7 @@ namespace App\Presenters;
 use App\Entity\Project;
 use App\Forms\ProjectFormFactory;
 use App\Repository\ProjectRepository;
+use Doctrine\DBAL\Exception\TableNotFoundException;
 use Doctrine\Persistence\ObjectRepository;
 use Nette;
 use Nettrine\ORM\EntityManagerDecorator;
@@ -28,7 +29,7 @@ final class ProjectPresenter extends BasePresenter
      */
     public function __construct(
         EntityManagerDecorator $em,
-        ProjectFormFactory     $projectFormFactory
+        ProjectFormFactory $projectFormFactory
     )
     {
         parent::__construct();
@@ -72,6 +73,7 @@ final class ProjectPresenter extends BasePresenter
 
     /**
      * @param int|null $page
+     * @throws Nette\Application\AbortException
      */
     public function renderDefault(?int $page = null): void
     {
@@ -79,11 +81,15 @@ final class ProjectPresenter extends BasePresenter
             $page = 1;
         }
 
-        $projectsCount = $this->projectRepository->count([]);
+        try {
+            $projectsCount = $this->projectRepository->count(['deleted' => false]);
+        } catch (TableNotFoundException $tableNotFoundException){
+            $this->redirect('Project:Migrate');
+        }
 
         $paginator = new Nette\Utils\Paginator;
         $paginator->setItemCount($projectsCount);
-        $paginator->setItemsPerPage(50);
+        $paginator->setItemsPerPage(20);
         $paginator->setPage($page);
 
         $this->template->projects = $this->projectRepository->findBy(
@@ -118,6 +124,19 @@ final class ProjectPresenter extends BasePresenter
         };
 
         return $projectForm;
+    }
+
+    public function actionMigrate(){
+    }
+
+    /**
+     * @throws Nette\Application\AbortException
+     */
+    public function handleRunMigration(){
+        shell_exec("/var/www/html/bin/console migrations:migrate --no-interaction");
+        sleep(1);
+        $this->flashMessage("Migrations done!", "success");
+        $this->redirect("Project:Default");
     }
 
 

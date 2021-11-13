@@ -1,8 +1,9 @@
 import naja from "naja";
 import netteForms from "nette-forms";
+
 import { initDatepicker } from "./datepicker";
 import { initModal } from "./modal";
-import * as animations from "./animations";
+import { hideAllAlerts } from "../custom";
 
 export const initAjax = function () {
     naja.snippetHandler.addEventListener('afterUpdate', (event) => {
@@ -14,14 +15,7 @@ export const initAjax = function () {
 
     naja.snippetHandler.addEventListener('afterUpdate', (event) => {
         if (event.detail.snippet.id === 'snippet--flashes') {
-                Array.from(document.getElementsByClassName("alert")).forEach(
-                    async function (element, index, array) {
-                        setTimeout(async () => {
-                            await animations.fadeOutAndRemove(element);
-                        }, 2000)
-
-                    }
-                );
+            hideAllAlerts();
         }
     });
 

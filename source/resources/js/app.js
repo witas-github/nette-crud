@@ -1,5 +1,10 @@
 import * as custom from './custom';
 import * as naja from './libs/naja'
+import * as animations from "./libs/animations";
 
-custom.hideAlert();
+custom.hideAlertByClick();
+custom.hideAllAlerts();
 naja.initAjax();
+
+
+
