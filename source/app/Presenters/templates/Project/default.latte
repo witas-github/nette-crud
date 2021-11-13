@@ -1,16 +1,16 @@
 {block content}
 
 <div class="container mt-4 mb-4">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProject">
+    <a n:href="editModal!" type="button" class="btn btn-primary ajax">
         + Add project
-    </button>
+    </a>
 </div>
 
-
-    {snippet modal}
+{snippet modal}
+    {ifset $showEditModal }
         {include 'includes/projectEditModal.latte'}
-    {/snippet}
-
+    {/ifset}
+{/snippet}
 
 <div class="container">
     <table class="table">
@@ -21,6 +21,7 @@
             <th scope="col">Deadline date</th>
             <th scope="col">Project type</th>
             <th scope="col">Is web project</th>
+            <th></th>
         </tr>
         </thead>
         <tbody n:snippet="projects">
@@ -32,7 +33,8 @@
                 <td>{$project->getName()}</td>
                 <td>{$project->getDeadline()->format($setting::DATE_FORMAT)}</td>
                 <td>{$project->getProjectTypeName()}</td>
-                <td>{if ($project->isWebProject())}Yes{/if}</td>
+                <td>{if ($project->isWebProject())}Yes{else}No{/if}</td>
+                <th><i class="bi bi-pencil"></i></th>
             </tr>
         {/foreach}
         </tbody>

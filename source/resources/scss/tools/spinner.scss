@@ -1,0 +1,15 @@
+#spinner{
+  display:none;
+  &.show{
+    display:block;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background-color:rgba(255,255,255,.5);
+    height:100%;
+    z-index:99999;
+    padding-top:45%;
+    text-align:center;
+  }
+}

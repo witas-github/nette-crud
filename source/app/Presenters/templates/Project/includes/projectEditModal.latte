@@ -1,10 +1,13 @@
 
-<div class="modal fade close-after-submit" id="editProject" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+<div class="modal fade-in"
+     style="display:block; background-color:rgba(0,0,0,.4)"
+     id="editProjectModal" tabindex="-1">
+
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="projectModalLabel">Project edit</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close modal-close"  aria-label="Close" data-target="editProjectModal"></button>
             </div>
             <div class="modal-main-content">
                 {form projectForm}
@@ -29,7 +32,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary modal-close" data-target="editProjectModal">Close</button>
                         {input "id"}
                         {input "send" class => "btn btn-primary"}
                     </div>

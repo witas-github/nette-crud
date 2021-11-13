@@ -25,6 +25,10 @@
     </div>
 </nav>
 
+<div id="spinner">
+    <div class="spinner-border text-primary" ></div>
+</div>
+
 <div id="flash-messages" class="container-fluid position-absolute mt-3">
     <span n:foreach="$flashes as $flash" style="float:right;" class="alert text-center alert-{$flash->type}" role="alert">{$flash->message}</span>
 </div>

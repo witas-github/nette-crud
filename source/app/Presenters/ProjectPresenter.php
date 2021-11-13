@@ -25,7 +25,7 @@ final class ProjectPresenter extends BasePresenter
      */
     public function __construct(
         EntityManagerDecorator $em,
-        ProjectFormFactory $projectFormFactory
+        ProjectFormFactory     $projectFormFactory
     )
     {
         parent::__construct();
@@ -35,14 +35,32 @@ final class ProjectPresenter extends BasePresenter
         $this->projectFormFactory = $projectFormFactory;
     }
 
-    public function actionDefault(?int $id = null){
+    public function actionDefault(?int $id = null)
+    {
+        bdump($id);
         $this->formId = $id;
         $this->template->projectView = true;
     }
 
+    /**
+     * @throws Nette\Application\AbortException
+     * @throws Nette\Application\UI\InvalidLinkException
+     */
+    public function handleEditModal()
+    {
+        $this->template->showEditModal = true;
+        if ($this->isAjax()) {
+            $this->redrawControl('modal');
+            $this->payload->postGet = TRUE;
+            $this->payload->url = $this->link('this');
+        } else {
+            $this->redirect('this');
+        }
+    }
+
     public function renderDefault(): void
     {
-        $this->template->projects = $this->projectRepository->findBy([], ['id'=>'desc']);
+        $this->template->projects = $this->projectRepository->findBy([], ['id' => 'desc']);
     }
 
     /**
@@ -51,14 +69,14 @@ final class ProjectPresenter extends BasePresenter
     public function createComponentProjectForm(): Nette\Application\UI\Form
     {
         $projectForm = $this->projectFormFactory->create($this->formId);
-        $projectForm->onSuccess[] = function(){
+        $projectForm->onSuccess[] = function () {
             $this->flashMessage("Form has been saved", "success");
         };
-        $projectForm->onError[] = function(){
+        $projectForm->onError[] = function () {
             $this->flashMessage("Something went wrong", "danger");
         };
 
-        $projectForm->onSuccess[] = function(){
+        $projectForm->onSuccess[] = function () {
             if ($this->isAjax()) {
                 $this->redrawControl('modal');
                 $this->redrawControl('projects');
