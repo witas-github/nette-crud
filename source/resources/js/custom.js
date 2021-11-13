@@ -13,13 +13,3 @@ export const hideAlert = function () {
         }
     });
 }
-
-export const hideAllAlerts = function () {
-    setTimeout(function () {
-        Array.from(document.getElementsByClassName("alert")).forEach(
-            function (element, index, array) {
-                animations.fadeOutAndRemove(element);
-            }
-        );
-    }, 3000);
-}

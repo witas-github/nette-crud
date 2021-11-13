@@ -6,6 +6,7 @@ namespace App\Presenters;
 
 use App\Entity\Project;
 use App\Forms\ProjectFormFactory;
+use App\Repository\ProjectRepository;
 use Doctrine\Persistence\ObjectRepository;
 use Nette;
 use Nettrine\ORM\EntityManagerDecorator;
@@ -14,10 +15,12 @@ use Nettrine\ORM\EntityManagerDecorator;
 final class ProjectPresenter extends BasePresenter
 {
     private EntityManagerDecorator $em;
+    /** @var ProjectRepository $projectRepository*/
     private ObjectRepository $projectRepository;
     private ProjectFormFactory $projectFormFactory;
 
     private ?int $formId = null;
+    private ?int $page = null;
 
     /**
      * @param EntityManagerDecorator $em
@@ -25,7 +28,7 @@ final class ProjectPresenter extends BasePresenter
      */
     public function __construct(
         EntityManagerDecorator $em,
-        ProjectFormFactory     $projectFormFactory
+        ProjectFormFactory $projectFormFactory
     )
     {
         parent::__construct();
@@ -35,9 +38,11 @@ final class ProjectPresenter extends BasePresenter
         $this->projectFormFactory = $projectFormFactory;
     }
 
-    public function actionDefault(?int $id = null)
+    public function actionDefault(?int $id = null, ?int $page = null)
     {
         $this->formId = $id;
+        $this->page = $page;
+
         $this->template->projectView = true;
     }
 
@@ -45,18 +50,27 @@ final class ProjectPresenter extends BasePresenter
      * @throws Nette\Application\AbortException
      * @throws Nette\Application\UI\InvalidLinkException
      */
-    public function handleEditModal()
+    public function handleEditModal(): void
     {
         $this->template->showEditModal = true;
-        if ($this->isAjax()) {
-            $this->redrawControl('modal');
-            $this->payload->postGet = TRUE;
-            $this->payload->url = $this->link('this');
-        } else {
-            $this->redirect('this');
-        }
+        $this->redrawSnippets(['modal'],['id' => null, 'page' => $this->page]);
     }
 
+    /**
+     * @param int $id
+     * @throws Nette\Application\AbortException
+     * @throws Nette\Application\UI\InvalidLinkException
+     */
+    public function handleDeleteProject(int $id): void{
+        $project = $this->projectRepository->getProjectById($id);
+        $project->setDeleted(true);
+        $this->em->flush();
+        $this->redrawSnippets(['projects'],['id' => null, 'page' => $this->page]);
+    }
+
+    /**
+     * @param int|null $page
+     */
     public function renderDefault(?int $page = null): void
     {
         if ($page === null) {
@@ -71,15 +85,14 @@ final class ProjectPresenter extends BasePresenter
         $paginator->setPage($page);
 
         $this->template->projects = $this->projectRepository->findBy(
-            [],
+            ['deleted' => false],
             ['id' => 'desc'],
             $paginator->getItemsPerPage(),
             $paginator->getOffset()
         );
         $this->template->paginator = $paginator;
-
         if ($this->isAjax()) {
-            $this->redrawControl();
+            $this->redrawControl('projects');
         }
     }
 
@@ -89,18 +102,17 @@ final class ProjectPresenter extends BasePresenter
     public function createComponentProjectForm(): Nette\Application\UI\Form
     {
         $projectForm = $this->projectFormFactory->create($this->formId);
+
         $projectForm->onSuccess[] = function () {
             $this->flashMessage("Form has been saved", "success");
         };
+
         $projectForm->onError[] = function () {
             $this->flashMessage("Something went wrong", "danger");
         };
 
         $projectForm->onSuccess[] = function () {
-            if ($this->isAjax()) {
-                $this->redrawControl('modal');
-                $this->redrawControl('projects');
-            }
+            $this->redrawSnippets(['flashes','modal','projects']);
         };
 
         return $projectForm;

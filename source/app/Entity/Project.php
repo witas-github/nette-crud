@@ -47,6 +47,11 @@ class Project extends BaseEntity
      */
     private bool $webProject;
 
+    /**
+     * @ORM\Column(type="boolean", options={"default" : false)
+     */
+    private bool $deleted = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -130,6 +135,26 @@ class Project extends BaseEntity
         $this->webProject = $webProject;
         return $this;
     }
+
+    /**
+     * @return bool
+     */
+    public function isDeleted(): bool
+    {
+        return $this->deleted;
+    }
+
+    /**
+     * @param bool $deleted
+     * @return Project
+     */
+    public function setDeleted(bool $deleted): Project
+    {
+        $this->deleted = $deleted;
+        return $this;
+    }
+
+
 
     public function toArray(): array
     {

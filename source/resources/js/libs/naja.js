@@ -2,12 +2,34 @@ import naja from "naja";
 import netteForms from "nette-forms";
 import { initDatepicker } from "./datepicker";
 import { initModal } from "./modal";
+import * as animations from "./animations";
 
 export const initAjax = function () {
     naja.snippetHandler.addEventListener('afterUpdate', (event) => {
         if (event.detail.snippet.id === 'snippet--modal') {
             initDatepicker();
             initModal();
+        }
+    });
+
+    naja.snippetHandler.addEventListener('afterUpdate', (event) => {
+        if (event.detail.snippet.id === 'snippet--flashes') {
+                Array.from(document.getElementsByClassName("alert")).forEach(
+                    async function (element, index, array) {
+                        setTimeout(async () => {
+                            await animations.fadeOutAndRemove(element);
+                        }, 2000)
+
+                    }
+                );
+        }
+    });
+
+    naja.uiHandler.addEventListener('interaction', (event) => {
+        const {element} = event.detail;
+        const question = element.dataset.confirm;
+        if (question && ! window.confirm(question)) {
+            event.preventDefault();
         }
     });
 
