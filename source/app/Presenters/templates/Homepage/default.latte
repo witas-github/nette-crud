@@ -7,8 +7,15 @@
 		<h1>Welcome to project manager</h1>
 		<p class="lead">Easy and free app for your project management</p>
 		<p>click "manage project" to start using app</p>
-		<p>generate {$setting::NUMBER_OF_GENERATED_PROJECT} random projects
-			<a n:href="generateProjects!">here!</a>
-		</p>
+
+		{ifset $dbError}
+			<p>Error connecting database.<br />
+				It can be caused by docker database container is not ready yet.<br />
+				Wait for 10-15 seconds and try <a href="/">refresh</a> this page!</p>
+		{else}
+			<p>generate {$setting::NUMBER_OF_GENERATED_PROJECT} random projects
+				<a n:href="generateProjects!">here!</a>
+			</p>
+		{/ifset}
 	</div>
 </div>

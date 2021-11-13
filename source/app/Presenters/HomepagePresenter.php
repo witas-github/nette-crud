@@ -6,6 +6,7 @@ namespace App\Presenters;
 
 use App\Service\ProjectService;
 use App\Setting;
+use Doctrine\DBAL\Exception\TableNotFoundException;
 use Exception;
 use Nette;
 use Nettrine\ORM\EntityManagerDecorator;
@@ -33,8 +34,8 @@ final class HomepagePresenter extends BasePresenter
         try {
             $this->em->getConnection()->connect();
         } catch (\Exception $e) {
-            $this->flashMessage("Database connection failure! Try refresh this page!", "danger");
-            $this->flashMessage("This maybe cause Docker mysql is not ready yet!", "danger");
+            $this->template->dbError = true;
+            $this->flashMessage("Database connection failure!", "danger");
         }
     }
 
@@ -44,7 +45,12 @@ final class HomepagePresenter extends BasePresenter
      */
     public function handleGenerateProjects(): void
     {
-        $this->projectService->generateRandomProject(Setting::NUMBER_OF_GENERATED_PROJECT);
+        try {
+            $this->projectService->generateRandomProject(Setting::NUMBER_OF_GENERATED_PROJECT);
+        } catch (TableNotFoundException $tableNotFoundException){
+            $this->redirect('Project:Migrate');
+        }
+
         $this->flashMessage(Setting::NUMBER_OF_GENERATED_PROJECT . ' projects was created!', 'success');
         $this->redirect('this');
     }

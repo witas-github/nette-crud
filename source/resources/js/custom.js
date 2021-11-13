@@ -15,7 +15,7 @@ export const hideAllAlerts = function () {
         async function (element, index, array) {
             setTimeout(async () => {
                 await animations.fadeOutAndRemove(element);
-            }, 2000 * (index + 1))
+            }, 3000 * (index + 1))
         }
     );
 }
