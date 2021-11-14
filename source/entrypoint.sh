@@ -4,6 +4,7 @@ php composer.phar install
 mkdir log
 mkdir temp
 chmod 777 log temp -R
+touch config/local.neon
 
 set -e
 
