@@ -1,7 +1,8 @@
 {
   "scripts": {
     "build-dev": "NODE_ENV=development webpack",
-    "build-prod": "NODE_ENV=production webpack"
+    "build-prod": "NODE_ENV=production webpack",
+    "watch": "webpack --watch"
   },
   "dependencies": {
     "@popperjs/core": "^2.10.2",

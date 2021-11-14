@@ -47,7 +47,7 @@ eval("var __WEBPACK_AMD_DEFINE_RESULT__;/**!\r\n * NetteForms - simple form vali
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _custom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./custom */ \"./resources/js/custom.js\");\n/* harmony import */ var _libs_naja__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./libs/naja */ \"./resources/js/libs/naja.js\");\n/* harmony import */ var _libs_animations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./libs/animations */ \"./resources/js/libs/animations.js\");\n\n\n\n\n_custom__WEBPACK_IMPORTED_MODULE_0__.hideAlertByClick();\n_custom__WEBPACK_IMPORTED_MODULE_0__.hideAllAlerts();\n_libs_naja__WEBPACK_IMPORTED_MODULE_1__.initAjax();\n\n\n\n\n\n//# sourceURL=webpack:///./resources/js/app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _custom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./custom */ \"./resources/js/custom.js\");\n/* harmony import */ var _libs_naja__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./libs/naja */ \"./resources/js/libs/naja.js\");\n\n\n\n_custom__WEBPACK_IMPORTED_MODULE_0__.hideAlertByClick();\n_custom__WEBPACK_IMPORTED_MODULE_0__.hideAllAlerts();\n_libs_naja__WEBPACK_IMPORTED_MODULE_1__.initAjax();\n\n//# sourceURL=webpack:///./resources/js/app.js?");
 
 /***/ }),
 

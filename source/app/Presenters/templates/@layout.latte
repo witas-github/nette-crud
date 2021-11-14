@@ -29,8 +29,9 @@
 </div>
 
 {snippet flashes}
-    <div id="flash-messages" style="z-index:99999;" class="container-fluid position-fixed mt-3">
-        <span n:foreach="$flashes as $flash" style="float:right;clear:both;" class="alert text-center fade-in alert-{$flash->type}" role="alert">{$flash->message}</span>
+    <div id="flash-messages" style="z-index:99999; right:0; top:0;" class="position-fixed p-4">
+        <span n:foreach="$flashes as $flash" style="float:right;clear:both;"
+             class="alert text-center fade-in alert-{$flash->type}" role="alert">{$flash->message}</span>
     </div>
 {/snippet}
 

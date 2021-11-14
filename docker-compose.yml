@@ -23,6 +23,8 @@ services:
             DB_HOST: ${DB_HOST}
         ports:
             - 3306:3306
+        volumes:
+            - my-datavolume:/var/lib/mysql
     nodejs:
         build:
             context: ./docker/nodejs
@@ -30,3 +32,5 @@ services:
             - "./source:/var/www/html"
         depends_on:
             - php-httpd
+volumes:
+    my-datavolume:
