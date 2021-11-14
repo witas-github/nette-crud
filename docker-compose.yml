@@ -10,9 +10,10 @@ services:
         ports:
             - 80:80
         depends_on:
-            -   database
+            - database
     database:
-        image: mysql
+        build:
+            context: ./docker/mysql
         command: --default-authentication-plugin=mysql_native_password
         restart: always
         environment:
@@ -22,3 +23,10 @@ services:
             DB_HOST: ${DB_HOST}
         ports:
             - 3306:3306
+    nodejs:
+        build:
+            context: ./docker/nodejs
+        volumes:
+            - "./source:/var/www/html"
+        depends_on:
+            - php-httpd
