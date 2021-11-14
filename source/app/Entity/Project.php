@@ -48,7 +48,7 @@ class Project extends BaseEntity
     private bool $webProject;
 
     /**
-     * @ORM\Column(type="boolean", options={"default" : false)
+     * @ORM\Column(type="boolean", options={"default" : false})
      */
     private bool $deleted = false;
 
